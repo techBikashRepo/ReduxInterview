@@ -7,14 +7,15 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import loginReducer from "./store/loginReducer";
 import productReducer from "./store/productReducer.js";
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const rootReducer = combineReducers({
   pr: productReducer,
   lg: loginReducer,
 });
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
